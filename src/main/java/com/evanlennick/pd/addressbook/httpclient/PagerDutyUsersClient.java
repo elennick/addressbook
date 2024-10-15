@@ -1,6 +1,8 @@
 package com.evanlennick.pd.addressbook.httpclient;
 
-import com.evanlennick.pd.addressbook.resource.UserResource;
+import com.evanlennick.pd.addressbook.service.UserCollectionResource;
+import com.evanlennick.pd.addressbook.service.UserResource;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -28,23 +30,35 @@ public class PagerDutyUsersClient {
     }
 
     public Optional<UserResource> getUser(final String userId) {
-        ResponseEntity<UserResource> responseEntity = client.get()
+        final ResponseEntity<JsonNode> responseEntity = client.get()
                 .uri(userId)
                 .header("Authorization", authHeaderValue)
                 .retrieve()
-                .toEntity(UserResource.class);
+                .toEntity(JsonNode.class);
 
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
-            log.debug("Got user with ID {} from PagerDuty API: {}", userId, responseEntity.getBody());
+            log.info("Got user with ID {} from PagerDuty API: {}", userId, responseEntity.getBody());
+            UserResource userResource = UserResourceAssembler.toUserResource(responseEntity.getBody());
+            return Optional.of(userResource);
         } else {
-            log.debug("Failed to retrieve user from PagerDuty API with ID: {}", userId);
+            log.info("Failed to retrieve user from PagerDuty API with ID: {}", userId);
+            return Optional.empty();
         }
-
-        return Optional.ofNullable(responseEntity.getBody());
     }
 
-    public List<UserResource> getUsers() {
-        throw new UnsupportedOperationException("not implemented yet");
+    public UserCollectionResource getUsers() {
+        final ResponseEntity<UserCollectionResource> responseEntity = client.get()
+                .header("Authorization", authHeaderValue)
+                .retrieve()
+                .toEntity(UserCollectionResource.class);
+
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            log.info("Got users with from PagerDuty API: {}", responseEntity.getBody());
+        } else {
+            log.info("Failed to retrieve users from PagerDuty user collection API");
+        }
+
+        return responseEntity.getBody();
     }
 
 }

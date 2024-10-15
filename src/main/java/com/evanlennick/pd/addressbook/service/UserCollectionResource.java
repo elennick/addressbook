@@ -1,6 +1,4 @@
-package com.evanlennick.pd.addressbook.controller;
-
-import com.evanlennick.pd.addressbook.resource.UserResource;
+package com.evanlennick.pd.addressbook.service;
 
 import java.util.List;
 
