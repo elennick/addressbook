@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/api/users")
+public class UserApiController {
 
     private final UserService service;
 
     @Autowired
-    public UserController(final UserService service) {
+    public UserApiController(final UserService service) {
         this.service = service;
     }
 
