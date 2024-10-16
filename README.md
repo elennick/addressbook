@@ -13,3 +13,4 @@ TBD
 * Consolidate CSS into one file
 * Consolidate Thymeleaf header/footer
 * Add more logs
+* Add generic error page

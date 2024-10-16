@@ -25,7 +25,7 @@ public class PageController {
 
     @GetMapping("/user-profile/{userId}")
     public String userProfile(Model model, @PathVariable("userId") String userId) {
-        model.addAttribute("user", userService.getUser(userId));
+        model.addAttribute("user", userService.getUser(userId).get()); //TODO handle if user doesnt exist
         return "user-profile";
     }
 

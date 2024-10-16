@@ -1,6 +1,7 @@
 package com.evanlennick.pd.addressbook.httpclient;
 
 import com.evanlennick.pd.addressbook.service.UserCollectionResource;
+import com.evanlennick.pd.addressbook.service.UserContactMethodResource;
 import com.evanlennick.pd.addressbook.service.UserResource;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class PagerDutyUsersApiClient {
 
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             log.info("Got user with ID {} from PagerDuty API: {}", userId, responseEntity.getBody());
-            UserResource userResource = UserResourceAssembler.toUserResource(responseEntity.getBody());
+            UserResource userResource = ResourceAssembler.toUserResource(responseEntity.getBody());
             return Optional.of(userResource);
         } else {
             log.info("Failed to retrieve user from PagerDuty API with ID: {}", userId);
@@ -53,10 +54,28 @@ public class PagerDutyUsersApiClient {
 
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             log.info("Got users with from PagerDuty API: {}", responseEntity.getBody());
-            return UserResourceAssembler.toUserCollectionResource(responseEntity.getBody());
+            return ResourceAssembler.toUserCollectionResource(responseEntity.getBody());
         } else {
             log.info("Failed to retrieve users from PagerDuty user collection API");
             return null; //TODO throw an exception or something instead? empty optional?
+        }
+    }
+
+    public Optional<UserContactMethodResource> getContactMethod(final String userId, final String cmId) {
+        final String path = userId + "/contact_methods/" + cmId;
+        final ResponseEntity<JsonNode> responseEntity = client.get()
+                .uri(path)
+                .header("Authorization", authHeaderValue)
+                .retrieve()
+                .toEntity(JsonNode.class);
+
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+            log.info("Got contact method from from PagerDuty API: {}", responseEntity.getBody());
+            UserContactMethodResource ucmr = ResourceAssembler.toUserContactMethodResource(responseEntity.getBody());
+            return Optional.of(ucmr);
+        } else {
+            log.info("Failed to retrieve contact method from PagerDuty API for user {} and contact method {}", userId, cmId);
+            return Optional.empty();
         }
     }
 

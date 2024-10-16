@@ -18,7 +18,16 @@
 </div>
 
 <div style="text-align: center; margin: auto; width: 100%; margin-bottom: 25px;">
-PUT USER INFO HERE
+    <div><b>FIRST NAME</b> <div th:text="${user.firstName}"/></div><br/>
+    <div><b>LAST NAME</b> <div th:text="${user.lastName} ?: 'N/A'"/></div><br/>
+    <div><b>CONTACT METHODS</b>
+        <div th:each="contactMethod : ${user.contactMethods}">
+            <b><div th:text="${contactMethod.display}"/></b>
+            <div th:text="${contactMethod.summary}"/>
+            <div th:text="${contactMethod.value}"/>
+            <br/>
+        </div>
+    </div><br/>
 </div>
 
 <div style="text-align: center; margin: auto; width: 100%;">

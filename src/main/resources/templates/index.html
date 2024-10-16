@@ -75,7 +75,7 @@
         <tr th:each="user : ${users}">
             <td><a th:href="@{'/user-profile/' + ${user.id}}" th:text="${user.id}"></a></td>
             <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.lastName} ?: 'N/A'"></td>
         </tr>
     </tbody>
 </table>

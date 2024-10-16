@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UserResourceAssemblerTest {
+public class ResourceAssemblerTest {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Test
     public void verifyWhenUserIsValid_basicAttributesSerializeCorrectly() throws JsonProcessingException {
-        UserResource userResource = UserResourceAssembler
+        UserResource userResource = ResourceAssembler
                 .toUserResource(exampleUserResponse());
 
         assertThat(userResource.id()).isEqualTo("PLOASXQ");
@@ -30,7 +30,7 @@ public class UserResourceAssemblerTest {
 
     @Test
     public void verifyWhenCollectionIsReturned_attributesSerializeCorrectly() throws JsonProcessingException {
-        UserCollectionResource userCollectionResource = UserResourceAssembler
+        UserCollectionResource userCollectionResource = ResourceAssembler
                 .toUserCollectionResource(exampleCollectionResponse());
 
         assertThat(userCollectionResource.limit()).isEqualTo(25);
