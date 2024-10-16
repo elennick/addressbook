@@ -5,11 +5,12 @@
 ### From IntelliJ IDEA
 
 * Right click on the `AddressbookApplication.java` file and choose `Run main()`
+* Once the app starts up, browse to http://localhost:8080
 
 ### From CLI
 
-* Using Maven wrapper: `./mvnw spring-boot:run`
-* Using locally installed Maven: `mvn spring-boot:run`
+* Using Maven wrapper `./mvnw spring-boot:run` or using locally installed Maven `mvn spring-boot:run`
+* Once the app starts up, browse to http://localhost:8080
 
 ## General Notes
 
