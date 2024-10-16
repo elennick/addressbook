@@ -25,6 +25,7 @@ This project is an implementation of the PagerDuty interview assignment located 
 * I didn't have time to set this up but I strongly prefer having service-wide component tests that mock out external dependencies (in this case the PagerDuty API) and then validate the entire integrated service from the top. Spring supports this nicely with <b>@SpringBootTest</b>.
 * I am logging PII which is fine since this is all sample data and a test app but in a real situation I would be very careful about ever logging phone numbers, names, emails, etc and would instead try to limit logs to arbitrary platform identifiers.
 * There are a lot of unchecked scenarios and most of this just works happy path. In most Spring apps like this I would spend more time creating error handling using <b>@ControllerAdvice</b> and creating a lot of tests to validate the scenarios that might throw errors.
+* There is currently no authorization of any kind on the raw APIs at `/api/users`. This is something that most real APIs would require and I would potentially use Spring Security to implement that here or would check authorization somewhere further up the chain in an API Gateway.
 
 ## TODO
 This section is just to give an idea of further refactoring and improvements I would make were I to continue this project. It's definitely not exhaustive:
