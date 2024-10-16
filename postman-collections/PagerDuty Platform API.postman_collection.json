@@ -1,0 +1,90 @@
+{
+	"info": {
+		"_postman_id": "5a443171-0c01-4718-9777-31e4d5d93ed1",
+		"name": "PagerDuty Platform API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "110646"
+	},
+	"item": [
+		{
+			"name": "Users Collection",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token token=y_NbAkKc66ryYTWUXYEu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.pagerduty.com/users",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pagerduty",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token token=y_NbAkKc66ryYTWUXYEu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.pagerduty.com/users/PLOASXQ",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pagerduty",
+						"com"
+					],
+					"path": [
+						"users",
+						"PLOASXQ"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "One Contact Method",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token token=y_NbAkKc66ryYTWUXYEu",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.pagerduty.com/users/PLOASXQ",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pagerduty",
+						"com"
+					],
+					"path": [
+						"users",
+						"PLOASXQ"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
