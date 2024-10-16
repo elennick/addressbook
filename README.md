@@ -1,5 +1,16 @@
 # Address Book
 
+## How to Run
+
+### From IntelliJ IDEA
+
+* Right click on the `AddressbookApplication.java` file and choose `Run main()`
+
+### From CLI
+
+* Using Maven wrapper: `./mvnw spring-boot:run`
+* Using locally installed Maven: `mvn spring-boot:run`
+
 ## General Notes
 
 This project is an implementation of the PagerDuty interview assignment located here -> [PagerDuty_Software_Demo_Discussion_and_Interview_Guide.pdf](PagerDuty_Software_Demo_Discussion_and_Interview_Guide.pdf). This project was created by [Evan Lennick](https://www.evanlennick.com). Here are some assorted notes and thoughts about this implementation:
