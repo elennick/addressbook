@@ -11,4 +11,5 @@ TBD
 * Add component tests
 * Add error handling / ControllerAdvice
 * Consolidate CSS into one file
+* Consolidate Thymeleaf header/footer
 * Add more logs
