@@ -1,5 +1,51 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <style>
+        .fancy-table {
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .fancy-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .fancy-table th,
+        .fancy-table td {
+            padding: 12px 15px;
+        }
+
+        .fancy-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .fancy-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .fancy-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .fancy-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+        .center {
+            margin: auto;
+            width: 100%;
+            border: 3px solid #048a24;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body style="background-color: white; width: 100%; font-family: 'Roboto Condensed', 'sans-serif;'; margin: 0; padding: 0;">
 
@@ -13,7 +59,11 @@
                 padding: 0;">
 </div>
 
-<table>
+<div style="text-align: center; font-size: 40px; margin-top: 25px; margin-bottom: 15px;">
+    Super Fancy Address Book
+</div>
+
+<table class="fancy-table">
     <thead>
         <tr>
             <th>ID</th>
