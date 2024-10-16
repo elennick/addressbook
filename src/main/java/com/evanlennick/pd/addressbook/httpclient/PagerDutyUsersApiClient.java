@@ -12,19 +12,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
 @Slf4j
-public class PagerDutyUsersClient {
+public class PagerDutyUsersApiClient {
 
     private final RestClient client;
     private final String authHeaderValue;
 
     @Autowired
-    public PagerDutyUsersClient(@Qualifier("pagerDutyUsersApiRestClient") RestClient client,
-                                @Value("${rest.client.pagerduty.apikey}") String authToken) {
+    public PagerDutyUsersApiClient(@Qualifier("pagerDutyUsersApiRestClient") RestClient client,
+                                   @Value("${rest.client.pagerduty.apikey}") String authToken) {
         this.client = client;
         this.authHeaderValue = "Token token=" + authToken;
     }
@@ -47,18 +46,18 @@ public class PagerDutyUsersClient {
     }
 
     public UserCollectionResource getUsers() {
-        final ResponseEntity<UserCollectionResource> responseEntity = client.get()
+        final ResponseEntity<JsonNode> responseEntity = client.get()
                 .header("Authorization", authHeaderValue)
                 .retrieve()
-                .toEntity(UserCollectionResource.class);
+                .toEntity(JsonNode.class);
 
         if (responseEntity.getStatusCode() == HttpStatus.OK) {
             log.info("Got users with from PagerDuty API: {}", responseEntity.getBody());
+            return UserResourceAssembler.toUserCollectionResource(responseEntity.getBody());
         } else {
             log.info("Failed to retrieve users from PagerDuty user collection API");
+            return null; //TODO throw an exception or something instead? empty optional?
         }
-
-        return responseEntity.getBody();
     }
 
 }

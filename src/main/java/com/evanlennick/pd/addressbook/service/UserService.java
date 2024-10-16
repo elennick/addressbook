@@ -1,6 +1,6 @@
 package com.evanlennick.pd.addressbook.service;
 
-import com.evanlennick.pd.addressbook.httpclient.PagerDutyUsersClient;
+import com.evanlennick.pd.addressbook.httpclient.PagerDutyUsersApiClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final PagerDutyUsersClient client;
+    private final PagerDutyUsersApiClient client;
 
     @Autowired
-    public UserService(final PagerDutyUsersClient client) {
+    public UserService(final PagerDutyUsersApiClient client) {
         this.client = client;
     }
 

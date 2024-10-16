@@ -6,5 +6,5 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record UserResource(String id, String firstName, String lastName, List<PagerDutyContactMethodResource> contactMethods) {
+public record UserResource(String id, String firstName, String lastName, String self, List<PagerDutyContactMethodResource> contactMethods) {
 }

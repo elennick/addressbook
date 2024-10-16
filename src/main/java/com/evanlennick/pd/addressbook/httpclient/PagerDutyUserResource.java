@@ -1,23 +1,25 @@
 package com.evanlennick.pd.addressbook.httpclient;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PagerDutyUserResource {
 
     @JsonProperty("id")
-    private final String id;
+    private String id;
 
     @JsonProperty("name")
-    private final String name;
+    private String name;
 
     @JsonProperty("contact_methods")
-    private final List<PagerDutyContactMethodResource> contactMethods;
+    private List<PagerDutyContactMethodResource> contactMethods;
 }

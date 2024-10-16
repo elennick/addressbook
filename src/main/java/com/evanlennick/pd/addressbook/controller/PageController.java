@@ -1,13 +1,24 @@
 package com.evanlennick.pd.addressbook.controller;
 
+import com.evanlennick.pd.addressbook.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class PageController {
 
+    private final UserService userService;
+
+    @Autowired
+    public PageController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("users", userService.getUsers().users());
         return "index";
     }
 
