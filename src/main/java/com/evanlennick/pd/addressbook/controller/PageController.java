@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PageController {
@@ -20,6 +21,12 @@ public class PageController {
     public String index(Model model) {
         model.addAttribute("users", userService.getUsers().users());
         return "index";
+    }
+
+    @GetMapping("/user-profile")
+    public String userProfile(Model model, @RequestParam("userId") String userId) {
+        model.addAttribute("user", userService.getUser(userId));
+        return "user-profile";
     }
 
 }
